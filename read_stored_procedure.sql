@@ -127,8 +127,9 @@ BEGIN
 	Stringers.LastName AS lastName,
 	Stringers.PhoneNumber AS phoneNumber,
 	Stringers.Email AS email,
-	Stringers.PreferredRacketType AS preferredRacketType
+	Purposes.Purpose AS preferredRacketType
 	FROM Stringers
+	JOIN Purposes ON Stringers.PreferredRacketType = Purposes.Id 
 	WHERE Stringers.Id = id;
 
 END //
@@ -203,6 +204,20 @@ BEGIN
 	Customers.PreferredTensionVertical AS preferredTensionVertical,
 	Customers.PreferredTensionHorizontal AS preferredTensionHorizontal
 	FROM Customers;
+
+END //
+ 
+DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE AuthenticateShop(
+	IN userId VARCHAR(255),
+	IN password VARCHAR(255))
+
+BEGIN
+
+	SELECT COUNT(*) FROM Shops WHERE Shops.UserId = userId AND Shops.Password = password;
 
 END //
  
