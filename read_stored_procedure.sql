@@ -222,3 +222,17 @@ BEGIN
 END //
  
 DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE AuthenticateCustomer(
+	IN userId VARCHAR(255),
+	IN password VARCHAR(255))
+
+BEGIN
+
+	SELECT COUNT(*) FROM Customers WHERE Customers.UserId = userId AND Customers.Password = password;
+
+END //
+ 
+DELIMITER ;
