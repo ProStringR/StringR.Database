@@ -16,3 +16,22 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE UpdateRacketStringInStorageOnPurchase(
+	IN stringId INT,
+	IN price DOUBLE,
+	IN transactionDate BIGINT,
+	IN lengthAdded INT)
+
+BEGIN
+
+	UPDATE Strings SET LengthInStock = LengthInStock + lengthAdded WHERE Id = stringId;
+
+	INSERT INTO StringTransactions (RacketStringId, Price, TransactionDate, LengthAdded)
+	VALUES (stringId, price, transactionDate, lengthAdded);
+
+END //
+
+DELIMITER ;
