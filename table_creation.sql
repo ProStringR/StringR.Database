@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS Customers (
     PreferredStringTypeId INT,
     PreferredTensionVertical DOUBLE,
     PreferredTensionHorizontal DOUBLE,
+    UNIQUE (UserId),
     FOREIGN KEY(PreferredStringTypeId) REFERENCES testDB.StringTypes(Id)
 );
 
@@ -143,6 +144,7 @@ CREATE TABLE IF NOT EXISTS Shops (
     PhoneNumber VARCHAR(45),
     UserId VARCHAR(255),
     Password VARCHAR(255),
+    UNIQUE (UserId),
     FOREIGN KEY(Address) REFERENCES testDB.Address(Id),
     FOREIGN KEY(TeamId) REFERENCES testDB.Teams(Id),
     FOREIGN KEY(Company) REFERENCES testDB.Companies(Id)
