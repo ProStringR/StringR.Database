@@ -16,12 +16,12 @@ DELIMITER //
  
 CREATE PROCEDURE GetAllOrdersForShopOnStatus(
 	IN id INT,
-	IN orderStatus INT)
+	IN stat INT)
 
 BEGIN
 
 	SELECT * FROM AllOrders
-	WHERE shopId = id AND orderStatus = orderStatus;
+	WHERE shopId = id AND orderStatus = stat;
 
 END //
  
@@ -73,20 +73,7 @@ CREATE PROCEDURE GetAllStringForShop(
 
 BEGIN
 
-	SELECT 
-	Strings.Id AS stringId,
-	Strings.PricePerRacket AS price,
-	Strings.LengthInStock AS lengthInStock,
-	Strings.Shop AS shopId,
-	StringInfo.Model AS stringModel,
-	StringInfo.StringType AS stringType,
-	StringInfo.Brand AS stringBrand,
-	StringInfo.Thickness AS thickness,
-	StringInfo.Purpose AS purpose,
-	StringInfo.Color AS color
-	FROM Strings
-	JOIN StringInfo ON Strings.Id = StringInfo.RacketStringId
-	WHERE Strings.Shop = id;
+	SELECT * FROM RacketStringView WHERE shopId = id;
 
 END //
  
@@ -99,16 +86,7 @@ CREATE PROCEDURE GetTeamOfStringerForShop(
 
 BEGIN
 
-	SELECT 
-	Stringers.Id AS stringerId,
-	Stringers.FirstName AS firstName,
-	Stringers.LastName AS lastName,
-	Stringers.PhoneNumber AS phoneNumber,
-	Stringers.Email AS email,
-	Stringers.PreferredRacketType AS preferredRacketType
-	FROM Team_Stringers
-	JOIN Stringers ON Team_Stringers.StringerId = Stringers.Id
-	WHERE Team_Stringers.TeamId = id;
+	SELECT * FROM StringerView WHERE teamId = id;
 
 END //
  
@@ -121,16 +99,7 @@ CREATE PROCEDURE GetStringerById(
 
 BEGIN
 
-	SELECT 
-	Stringers.Id AS stringerId,
-	Stringers.FirstName AS firstName,
-	Stringers.LastName AS lastName,
-	Stringers.PhoneNumber AS phoneNumber,
-	Stringers.Email AS email,
-	Purposes.Purpose AS preferredRacketType
-	FROM Stringers
-	JOIN Purposes ON Stringers.PreferredRacketType = Purposes.Id 
-	WHERE Stringers.Id = id;
+	SELECT * FROM StringerView WHERE stringerId = id;
 
 END //
  
@@ -172,17 +141,8 @@ CREATE PROCEDURE GetCustomerById(
 
 BEGIN
 
-	SELECT 
-	Customers.Id AS id,
-	Customers.FirstName AS firstName,
-	Customers.LastName AS lastName,
-	Customers.Email AS email,
-	Customers.PhoneNumber AS phoneNumber,
-	Customers.PreferredStringTypeId AS preferredStringType,
-	Customers.PreferredTensionVertical AS preferredTensionVertical,
-	Customers.PreferredTensionHorizontal AS preferredTensionHorizontal
-	FROM Customers
-	WHERE Customers.Id = id;
+	SELECT * FROM CustomerView
+	WHERE customerId = id;
 
 END //
  
@@ -194,16 +154,7 @@ CREATE PROCEDURE GetAllCustomers()
 
 BEGIN
 
-	SELECT 
-	Customers.Id AS id,
-	Customers.FirstName AS firstName,
-	Customers.LastName AS lastName,
-	Customers.Email AS email,
-	Customers.PhoneNumber AS phoneNumber,
-	Customers.PreferredStringTypeId AS preferredStringType,
-	Customers.PreferredTensionVertical AS preferredTensionVertical,
-	Customers.PreferredTensionHorizontal AS preferredTensionHorizontal
-	FROM Customers;
+	SELECT * FROM CustomerView;
 
 END //
  
@@ -212,12 +163,11 @@ DELIMITER ;
 DELIMITER //
  
 CREATE PROCEDURE AuthenticateShop(
-	IN userId VARCHAR(255),
-	IN password VARCHAR(255))
+	IN userId VARCHAR(255))
 
 BEGIN
 
-	SELECT COUNT(*) FROM Shops WHERE Shops.UserId = userId AND Shops.Password = password;
+ 	SELECT Shops.Id AS id, Shops.Password AS password FROM Shops WHERE Shops.UserId = userId;
 
 END //
  
@@ -226,12 +176,11 @@ DELIMITER ;
 DELIMITER //
  
 CREATE PROCEDURE AuthenticateCustomer(
-	IN userId VARCHAR(255),
-	IN password VARCHAR(255))
+	IN userId VARCHAR(255))
 
 BEGIN
 
-	SELECT COUNT(*) FROM Customers WHERE Customers.UserId = userId AND Customers.Password = password;
+	SELECT Customers.Id AS id, Customers.Password AS password FROM Customers WHERE Customers.UserId = userId;
 
 END //
  

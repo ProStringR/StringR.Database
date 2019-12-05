@@ -77,6 +77,14 @@ CREATE TABLE IF NOT EXISTS Stringers (
     FOREIGN KEY(PreferredRacketType) REFERENCES testDB.Purposes(Id)
 );
 
+CREATE TABLE IF NOT EXISTS Team_Stringers (
+    TeamId INT,
+    StringerId INT,
+    PRIMARY KEY (TeamId, StringerId),
+    FOREIGN KEY(TeamId) REFERENCES testDB.Teams(Id),
+    FOREIGN KEY(StringerId) REFERENCES testDB.Stringers(Id)
+);
+
 CREATE TABLE IF NOT EXISTS Address (
 	Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ZipCode VARCHAR(45),
@@ -111,14 +119,6 @@ CREATE TABLE IF NOT EXISTS StringTransactions (
     FOREIGN KEY(RacketStringId) REFERENCES testDB.Strings(Id)
 );
 
-CREATE TABLE IF NOT EXISTS Team_Stringers (
-	TeamId INT,
-    StringerId INT,
-    PRIMARY KEY (TeamId, StringerId),
-    FOREIGN KEY(TeamId) REFERENCES testDB.Teams(Id),
-    FOREIGN KEY(StringerId) REFERENCES testDB.Stringers(Id)
-);
-
 CREATE TABLE IF NOT EXISTS StringInfo (
 	Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     RacketStringId INT,
@@ -138,6 +138,7 @@ CREATE TABLE IF NOT EXISTS StringInfo (
 
 CREATE TABLE IF NOT EXISTS Shops (
     Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(45),
     Address INT,
     TeamId INT,
     Company INT,

@@ -147,6 +147,7 @@ DELIMITER ;
 DELIMITER //
 
 CREATE PROCEDURE CreateShop(
+	IN shopName VARCHAR(45),
 	IN zipCode VARCHAR(45),
 	IN city VARCHAR(45),
 	IN country VARCHAR(45),
@@ -154,12 +155,14 @@ CREATE PROCEDURE CreateShop(
 	IN latitude DOUBLE,
 	IN street VARCHAR(45),
 	IN addressNumber VARCHAR(45),
-	IN companyId INT,
 	IN phoneNumber VARCHAR(45),
 	IN userId VARCHAR(255),
 	IN password VARCHAR(255))
 
 BEGIN
+	
+	CALL CreateCompany(shopName);
+	SET @companyId = LAST_INSERT_ID();
 
 	INSERT IGNORE INTO Cities (ZipCode, City, Country)
 	VALUES (zipCode, city, country);
@@ -169,8 +172,8 @@ BEGIN
 
 	SET @addressId = LAST_INSERT_ID();
 
-	INSERT INTO Shops (Address, TeamId, Company, PhoneNumber, UserId, Password)
-	VALUES (@addressId, null, companyId, phoneNumber, userId, password);
+	INSERT INTO Shops (Name, Address, TeamId, Company, PhoneNumber, UserId, Password)
+	VALUES (shopName, @addressId, null, @companyId, phoneNumber, userId, password);
 
 END //
 
