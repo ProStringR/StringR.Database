@@ -83,14 +83,14 @@ SELECT
 
 CREATE VIEW StringerView
 AS
-SELECT DISTINCT 
+SELECT
 	Stringers.Id AS stringerId,
 	Stringers.FirstName AS firstName,
 	Stringers.LastName AS lastName,
 	Stringers.PhoneNumber AS phoneNumber,
 	Stringers.Email AS email,
 	Purposes.Purpose AS preferredRacketType,
-	Team_Stringers.TeamId AS teamId
+    Team_Stringers.TeamId AS teamId
 	FROM Stringers
 	JOIN Purposes ON Stringers.PreferredRacketType = Purposes.Id
-	JOIN Team_Stringers ON stringerId = Team_Stringers.StringerId
+    JOIN Team_Stringers ON Stringers.Id = Team_Stringers.StringerId
