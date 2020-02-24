@@ -167,7 +167,6 @@ CREATE PROCEDURE CreateCustomer(
 	IN lastName VARCHAR(45),
 	IN email VARCHAR(45),
 	IN phoneNumber VARCHAR(45),
-	IN userId VARCHAR(255),
 	IN password VARCHAR(255),
 	IN preferredStringTypeId INT,
 	IN preferredTensionVertical DOUBLE,
@@ -175,8 +174,8 @@ CREATE PROCEDURE CreateCustomer(
 
 BEGIN
 
-	INSERT INTO Customers (FirstName, LastName, Email, PhoneNumber, UserId, Password, PreferredStringTypeId, PreferredTensionVertical, PreferredTensionHorizontal)
-	VALUES (firstName, lastName, email, phoneNumber, userId, password, preferredStringTypeId, preferredTensionVertical, preferredTensionHorizontal);
+	INSERT INTO Customers (FirstName, LastName, Email, PhoneNumber, Password, PreferredStringTypeId, PreferredTensionVertical, PreferredTensionHorizontal)
+	VALUES (firstName, lastName, email, phoneNumber, password, preferredStringTypeId, preferredTensionVertical, preferredTensionHorizontal);
 
 END //
 

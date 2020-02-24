@@ -176,11 +176,11 @@ DELIMITER ;
 DELIMITER //
  
 CREATE PROCEDURE AuthenticateCustomer(
-	IN userId VARCHAR(255))
+	IN email VARCHAR(255))
 
 BEGIN
 
-	SELECT Customers.Id AS id, Customers.Password AS password FROM Customers WHERE Customers.UserId = userId;
+	SELECT Customers.Id AS id, Customers.Password AS password FROM Customers WHERE Customers.Email = email;
 
 END //
  

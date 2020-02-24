@@ -101,12 +101,11 @@ CREATE TABLE IF NOT EXISTS Customers (
     LastName VARCHAR(45),
     Email VARCHAR(45),
     PhoneNumber VARCHAR(45),
-    UserId VARCHAR(255),
     Password VARCHAR(255),
     PreferredStringTypeId INT,
     PreferredTensionVertical DOUBLE,
     PreferredTensionHorizontal DOUBLE,
-    UNIQUE (UserId),
+    UNIQUE (Email),
     FOREIGN KEY(PreferredStringTypeId) REFERENCES testDB.StringTypes(Id)
 );
 
