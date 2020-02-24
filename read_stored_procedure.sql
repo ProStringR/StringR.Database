@@ -163,11 +163,11 @@ DELIMITER ;
 DELIMITER //
  
 CREATE PROCEDURE AuthenticateShop(
-	IN userId VARCHAR(255))
+	IN email VARCHAR(255))
 
 BEGIN
 
- 	SELECT Shops.Id AS id, Shops.Password AS password FROM Shops WHERE Shops.UserId = userId;
+ 	SELECT Shops.Id AS id, Shops.Password AS password FROM Shops WHERE Shops.Email = email;
 
 END //
  

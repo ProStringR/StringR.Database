@@ -142,9 +142,9 @@ CREATE TABLE IF NOT EXISTS Shops (
     TeamId INT,
     Company INT,
     PhoneNumber VARCHAR(45),
-    UserId VARCHAR(255),
+    Email VARCHAR(255),
     Password VARCHAR(255),
-    UNIQUE (UserId),
+    UNIQUE (Email),
     FOREIGN KEY(Address) REFERENCES testDB.Address(Id),
     FOREIGN KEY(TeamId) REFERENCES testDB.Teams(Id),
     FOREIGN KEY(Company) REFERENCES testDB.Companies(Id)

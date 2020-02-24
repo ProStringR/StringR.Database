@@ -126,7 +126,7 @@ CREATE PROCEDURE CreateShop(
 	IN street VARCHAR(45),
 	IN addressNumber VARCHAR(45),
 	IN phoneNumber VARCHAR(45),
-	IN userId VARCHAR(255),
+	IN email VARCHAR(255),
 	IN password VARCHAR(255))
 
 BEGIN
@@ -145,11 +145,11 @@ BEGIN
 	INSERT INTO Teams (Id) VALUES (null);
 	SET @teamId = LAST_INSERT_ID();
 
-	INSERT INTO Shops (Name, Address, TeamId, Company, PhoneNumber, UserId, Password)
-	VALUES (shopName, @addressId, @teamId, @companyId, phoneNumber, userId, password);
+	INSERT INTO Shops (Name, Address, TeamId, Company, PhoneNumber, Email, Password)
+	VALUES (shopName, @addressId, @teamId, @companyId, phoneNumber, email, password);
 
 	INSERT INTO Stringers (FirstName, LastName, PhoneNumber, Email, PreferredRacketType)
-	VALUES (shopName, shopName, phoneNumber, userId, 4);
+	VALUES (shopName, shopName, phoneNumber, email, 4);
 
 	SET @stringerId = LAST_INSERT_ID();
 
