@@ -92,36 +92,6 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE CreateTeamWithStringerForShop(
-	IN firstName VARCHAR(45),
-	IN lastName VARCHAR(45),
-	IN phoneNumber VARCHAR(45),
-	IN email VARCHAR(45),
-	IN preferredRacketType INT,
-	IN shopId INT)
-
-BEGIN
-
-	INSERT INTO Teams (Id) VALUES (null);
-
-	SET @teamId = LAST_INSERT_ID();
-
-	INSERT INTO Stringers (FirstName, LastName, PhoneNumber, Email, PreferredRacketType)
-	VALUES (firstName, lastName, phoneNumber, email, preferredRacketType);
-
-	SET @stringerId = LAST_INSERT_ID();
-
-	INSERT INTO Team_Stringers (TeamId, StringerId)
-	VALUES (@teamId, @stringerId);
-
-	UPDATE Shops SET TeamId = @teamId WHERE Id = shopId;
-
-END //
-
-DELIMITER ;
-
-DELIMITER //
-
 CREATE PROCEDURE AddStringerToTeam(
 	IN teamId INT,
 	IN firstName VARCHAR(45),
@@ -172,8 +142,19 @@ BEGIN
 
 	SET @addressId = LAST_INSERT_ID();
 
+	INSERT INTO Teams (Id) VALUES (null);
+	SET @teamId = LAST_INSERT_ID();
+
 	INSERT INTO Shops (Name, Address, TeamId, Company, PhoneNumber, UserId, Password)
-	VALUES (shopName, @addressId, null, @companyId, phoneNumber, userId, password);
+	VALUES (shopName, @addressId, @teamId, @companyId, phoneNumber, userId, password);
+
+	INSERT INTO Stringers (FirstName, LastName, PhoneNumber, Email, PreferredRacketType)
+	VALUES (shopName, shopName, phoneNumber, userId, 4);
+
+	SET @stringerId = LAST_INSERT_ID();
+
+	INSERT INTO Team_Stringers (TeamId, StringerId)
+	VALUES (@teamId, @stringerId);
 
 END //
 
