@@ -1,6 +1,7 @@
 CALL AddPurpose('Tennis');
 CALL AddPurpose('Badminton');
 CALL AddPurpose('Squash');
+CALL AddPurpose('Default');
 
 CALL AddStringType('Polyester');
 CALL AddStringType('Natural Gut');
