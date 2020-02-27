@@ -253,7 +253,7 @@ CREATE PROCEDURE AddStringModel(
 
 BEGIN
 
-	INSERT IGNORE INTO StringModels (StringModel) VALUES (stringModel) ON DUPLICATE KEY UPDATE StringModel=stringModel;
+	INSERT IGNORE INTO StringModels (StringModel) VALUES (stringModel) ON DUPLICATE KEY UPDATE Id=LAST_INSERT_ID(Id), StringModel=stringModel;
 
 END //
 
