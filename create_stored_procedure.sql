@@ -59,7 +59,7 @@ DELIMITER //
 
 CREATE PROCEDURE AddRacketStringToStorageForShop(
 	IN shopId INT,
-	IN lenght DOUBLE,
+	IN length DOUBLE,
 	IN pricePerRacket DOUBLE,
 	IN model VARCHAR(45),
 	IN stringType INT,
@@ -76,7 +76,7 @@ BEGIN
 	SET @stringModelId = LAST_INSERT_ID();
 
 	INSERT INTO Strings (Shop, PricePerRacket, LengthInStock)
-	VALUES (shopId, pricePerRacket, lenght);
+	VALUES (shopId, pricePerRacket, length);
 
 	SET @racketStringId = LAST_INSERT_ID();
 
@@ -84,7 +84,7 @@ BEGIN
 	VALUES (@racketStringId, @stringModelId, stringType, brand, thickness, purpose, color);
 
 	INSERT INTO StringTransactions (RacketStringId, Price, TransactionDate, LengthAdded)
-	VALUES (@racketStringId, price, datePlaced, lenght);
+	VALUES (@racketStringId, price, datePlaced, length);
 
 END //
 
