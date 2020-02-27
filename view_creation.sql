@@ -63,7 +63,7 @@ SELECT
 CREATE VIEW RacketStringView
 AS
 SELECT
-	Strings.Id AS id,
+	Strings.Id AS stringId,
 	Strings.Shop AS shopId,
 	Strings.LengthInStock AS lengthInStock,
 	Strings.PricePerRacket AS price,

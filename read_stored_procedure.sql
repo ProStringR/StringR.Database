@@ -48,19 +48,7 @@ CREATE PROCEDURE GetStringById(
 
 BEGIN
 
-	SELECT 
-	Strings.Id AS stringId,
-	Strings.PricePerRacket AS price,
-	Strings.LengthInStock AS lengthInStock,
-	StringInfo.Model AS stringModel,
-	StringInfo.StringType AS stringType,
-	StringInfo.Brand AS stringBrand,
-	StringInfo.Thickness AS thickness,
-	StringInfo.Purpose AS purpose,
-	StringInfo.Color AS color
-	FROM Strings
-	JOIN StringInfo ON Strings.Id = StringInfo.RacketStringId
-	WHERE Strings.Id = id;
+	SELECT * FROM RacketStringView WHERE stringId = id;
 
 END //
  
