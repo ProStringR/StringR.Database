@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Strings (
     Shop INT,
     PricePerRacket DOUBLE,
     LengthInStock DOUBLE,
+    IsSoftDeleted TINYINT,
     FOREIGN KEY(Shop) REFERENCES testDB.Shops(Id)
 );
 

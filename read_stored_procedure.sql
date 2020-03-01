@@ -61,7 +61,7 @@ CREATE PROCEDURE GetAllStringForShop(
 
 BEGIN
 
-	SELECT * FROM RacketStringView WHERE shopId = id;
+	SELECT * FROM RacketStringView WHERE shopId = id AND deleted = 0;
 
 END //
  
@@ -169,6 +169,79 @@ CREATE PROCEDURE AuthenticateCustomer(
 BEGIN
 
 	SELECT Customers.Id AS id, Customers.Password AS password FROM Customers WHERE Customers.Email = email;
+
+END //
+ 
+DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE GetAllPurposes()
+
+BEGIN
+
+	SELECT * FROM Purposes;
+
+END //
+ 
+DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE GetAllStringTypes()
+
+BEGIN
+
+	SELECT * FROM StringTypes;
+
+END //
+ 
+DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE GetAllColors()
+
+BEGIN
+
+	SELECT * FROM Colors;
+
+END //
+ 
+DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE GetAllRacketBrands()
+
+BEGIN
+
+	SELECT * FROM RacketBrands;
+
+END //
+ 
+DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE GetAllStringBrands()
+
+BEGIN
+
+	SELECT * FROM Brands;
+
+END //
+ 
+DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE GetStringPurchaseHistory(
+	IN stringId INT)
+
+BEGIN
+
+	SELECT * FROM StringTransactions WHERE StringTransactions.RacketStringId = stringId;
 
 END //
  

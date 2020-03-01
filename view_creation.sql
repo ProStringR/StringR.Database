@@ -67,6 +67,7 @@ SELECT
 	Strings.Shop AS shopId,
 	Strings.LengthInStock AS lengthInStock,
 	Strings.PricePerRacket AS price,
+	Strings.IsSoftDeleted AS deleted,
 	StringModels.StringModel AS stringModel,
 	StringTypes.StringType AS stringType,
 	Brands.Brand AS stringBrand,
