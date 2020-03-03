@@ -3,7 +3,7 @@ DELIMITER //
 CREATE PROCEDURE CreateOrder(
 	IN customerId INT,
 	IN stringerId INT,
-	IN shopId INT,
+	IN shopId INT, 
 	IN racketModel VARCHAR(45),
 	IN racketBrand INT,
 	IN tensionVertical DOUBLE,

@@ -9,6 +9,7 @@ CREATE PROCEDURE UpdateOrder(
 BEGIN
 
 	UPDATE Orders SET OrderStatus = orderStatus WHERE Id = orderId;
+	UPDATE Orders SET Paid = paidStatus WHERE Id = orderId;
 
 	INSERT INTO OrderTransactions (OrderId, TransactionDate, Paid, OrderStatus)
 	VALUES (orderId, transactionDate, paidStatus, orderStatus);

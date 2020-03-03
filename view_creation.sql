@@ -10,6 +10,7 @@ SELECT
 	Orders.OrderStatus AS orderStatus,
 	Orders.Comment AS comment,
 	Orders.Price AS price,
+	Orders.Paid AS paid,
 	Orders.DeliveryDate AS deliveryDate,
 	Orders.TensionVertical AS tensionVertical,
 	Orders.TensionHorizontal AS tensionHorizontal,

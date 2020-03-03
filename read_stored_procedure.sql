@@ -246,3 +246,16 @@ BEGIN
 END //
  
 DELIMITER ;
+
+DELIMITER //
+ 
+CREATE PROCEDURE GetOrderHistory(
+	IN orderId INT)
+
+BEGIN
+
+	SELECT * FROM OrderTransactions WHERE OrderTransactions.OrderId = orderId;
+
+END //
+ 
+DELIMITER ;

@@ -168,6 +168,7 @@ CREATE TABLE IF NOT EXISTS Orders (
     Customer INT,
     Stringer INT,
     Shop INT,
+    Paid TINYINT,
     Racket INT,
     StringId INT,
     OrderStatus INT,
